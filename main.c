@@ -46,12 +46,6 @@ int main(){
 	/*setting the background color*/
 	glClearColor(0.1f, 0.6f, 0.3f, 1.0f);
 
-	float vertices[] = {
-		-0.5f, -0.5f,
-		0.0f, 0.5f,
-		0.5f, -0.5f
-	};
-
 	const char* vertexSource = "#version 330 core\n"
 			"layout (location = 0) in vec2 aPos;\n"
 			"void main(){\n"
@@ -120,7 +114,19 @@ int main(){
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	unsigned int VBO, VAO;
+	float vertices[] = {
+		-0.5f, -0.5f,
+		-0.5f, 0.5f,
+		0.5f, -0.5f,
+		0.5f, 0.5f
+	};
+	
+	unsigned short indices[] = {
+		0, 1, 2,
+		2, 3, 1
+	};
+
+	unsigned int VBO, VAO, EBO;
 	glGenBuffers(1, &VBO);
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
@@ -128,6 +134,9 @@ int main(){
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 
 	/*enable depth testing*/ 
@@ -141,7 +150,8 @@ int main(){
 
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
 
 		/*swap screen buffers*/
 		glfwSwapBuffers(window);
