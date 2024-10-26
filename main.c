@@ -21,7 +21,7 @@ int main(){
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	/*window creation*/
-	GLFWwindow* window = glfwCreateWindow(600, 400, "Basic Game Engine", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1000, 700, "Basic Game Engine", NULL, NULL);
 
 	/*window debug*/
 	if (window == NULL){
@@ -44,17 +44,17 @@ int main(){
 	}
 
 	/*setting the background color*/
-	glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
+	glClearColor(0.1f, 0.6f, 0.3f, 1.0f);
 
 
 	/*enable depth testing*/ 
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
-
+	
 	while(!glfwWindowShouldClose(window)){
 
 		/*clear background*/
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		/*swap screen buffers*/
 		glfwSwapBuffers(window);
