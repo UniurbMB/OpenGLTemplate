@@ -5,14 +5,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
-/*imported headers*/
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 int main(){
-
-	/*pre init calls*/
-	stbi_set_flip_vertically_on_load(true);
 
 	/*glfw init*/
 	glfwInit();
